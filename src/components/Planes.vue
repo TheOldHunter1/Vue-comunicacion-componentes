@@ -1,36 +1,35 @@
 <template>
-  <div id="app">
-    <center>  
-      <img alt="Vue logo"  src="./assets/logo.png">
-      <br><contador/><contador/><contador/><contador/><br>
-      <h2>Listado de planes de cursos de programacion</h2>
-      <div class="planes">
-        <!-- <plan nombre="Plan 1 - Principiante"/>
-        <plan nombre="Plan 2 - Intermedio"/>
-        <plan nombre="Plan 3 - Avanzado"/>
-        <plan nombre="Plan 4 - Hacker"/> -->
-        <!-- <plan v-for="plans in planes" :nombre="plans" :key="plans" /> -->
-      <planes/>
-      </div>
-    </center>
-  </div>
+    <div>
+        <plan v-for="plans in planes" :nombre="plans" :key="plans" @select="planSeleccionado"/>
+    </div>
 </template>
-
 <script>
-import Contador from './components/Contador.vue'
-import Planes from './components/Planes.vue'
-
+import Plan from './Plan.vue'
 export default {
-  name: 'App',
-  components: {
-    Contador,
-    Planes
-  }
+    nombre:'Planes',
+    components:{
+        Plan
+    },
+    data(){
+        return{
+            planes:[
+                'Plan 1 - Principiante',
+                'Plan 2 - Intermedio',
+                'Plan 3 - Avanzado',
+                'Plan 4 - Hacker'
+            ],
+            PlanSelect: null
+        }
+    },  
+    methods: {
+        planSeleccionado(plan){
+            this.planSelect = plan;   
+        }
+    }
 }
 </script>
-
 <style>
-#app {
+    #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
